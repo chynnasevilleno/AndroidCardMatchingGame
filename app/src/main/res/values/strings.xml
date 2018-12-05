@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">The Meme Machine</string>
+    <string name="activity2_name">Second Activity</string>
+    <string name="menu1">GAME START</string>
+    <string name="menu2">CONTROLS</string>
+    <string name="menu3">HIGH SCORE</string>
+    <string name="menu4">QUIT</string>
+</resources>
