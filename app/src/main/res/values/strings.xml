@@ -5,4 +5,8 @@
     <string name="menu2">CONTROLS</string>
     <string name="menu3">HIGH SCORE</string>
     <string name="menu4">QUIT</string>
+    <string name="cards_default">\???</string>
+    <string name="correct_textview">Correct</string>
+    <string name="incorrect_textview">Incorrect</string>
+    <string name="default_zero">00</string>
 </resources>
