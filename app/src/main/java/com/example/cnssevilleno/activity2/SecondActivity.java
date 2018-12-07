@@ -1,11 +1,13 @@
 package com.example.cnssevilleno.activity2;
 
-import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ public class SecondActivity extends AppCompatActivity {
     private int hits = 0;
     private int misses = 0;
     private int counter = 0;
+    public int millis = 0;
     // Trackers
     private int[] id = new int[2];
     private int[] value = new int[2];
@@ -31,6 +34,22 @@ public class SecondActivity extends AppCompatActivity {
     private TextView cdTextView;
     // Booleans
     private boolean endgame;
+    //Timer
+    Chronometer mChronometer;
+
+    // Initialize photos array (photos)
+    final int[] drawable = new int[] {
+            R.drawable.one,
+            R.drawable.two,
+            R.drawable.three,
+            R.drawable.four,
+            R.drawable.five,
+            R.drawable.six,
+            R.drawable.seven,
+            R.drawable.eight
+    };
+    private static String[] symbols;
+    private static String[] letters;
 
 
     @Override
@@ -40,6 +59,11 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        //if user chose symbols
+        //populateSymbols();
+        //if user chose letters
+        //populateLetters();
+
         // Initialize elements
         initArrayList();
         initCards();
@@ -48,8 +72,12 @@ public class SecondActivity extends AppCompatActivity {
         // Begin countdown of 3 seconds
         countdown();
     }
-
-
+    public void populateSymbols(){
+        symbols = new String[]{"ω", "ψ", "π", "θ", "ξ", "ζ", "δ", "β"};
+    }
+    public void populateLetters(){
+        letters = new String[]{"A","B","C","D","E","F","G","H"};
+    }
     public void initArrayList(){
         /* INITIALIZE ARRAYLIST with 16 shuffled numbers
 
@@ -63,8 +91,14 @@ public class SecondActivity extends AppCompatActivity {
          */
 
         for (int y = 0; y < (cards.length/2); y++) {
-            iconList.add(y);
-            iconList.add(y);
+            //if user configures letters
+            //iconList.add
+            //if user configures numbers
+            //if user configures pictures (default)
+                iconList.add(drawable[y]);
+                iconList.add(drawable[y]);
+            //if user configures symbols
+
         }
         Collections.shuffle(iconList);
 
@@ -121,7 +155,7 @@ public class SecondActivity extends AppCompatActivity {
         cards[15] = (Button)findViewById(R.id.button16);
 
         for(int x = 0; x < cards.length; x++){
-            cards[x].setText(iconList.get(x) + "");
+            cards[x].setBackgroundResource(iconList.get(x));
         }
     }
 
@@ -155,8 +189,9 @@ public class SecondActivity extends AppCompatActivity {
             after 3 seconds.
 
          */
+        millis = 3000; //set using radio button
 
-        new CountDownTimer(3000, 1000){
+        new CountDownTimer(millis, 1000){
             public void onTick(long millisUntilFinished){
                 millisUntilFinished = TimeUnit.MILLISECONDS.toSeconds(
                         millisUntilFinished);
@@ -165,8 +200,31 @@ public class SecondActivity extends AppCompatActivity {
             public void onFinish(){
                 for(int x = 0; x < cards.length; x++){
                     cards[x].setText(R.string.cards_default);
+                    cards[x].setBackgroundResource(R.drawable.button_custom);
                 }
-                cdTextView.setText(R.string.default_zero);
+                //start timer
+                final Handler h = new Handler();
+                h.postDelayed(new Runnable()
+                {
+                    private long time = 0;
+
+                    @Override
+                    public void run()
+                    {
+                        time += 1000;
+                        int seconds = (int) (time / 1000);
+                        int minutes = seconds / 60;
+                        seconds = seconds % 60;
+
+                        cdTextView.setText(String.format("%d:%02d", minutes, seconds));
+                        h.postDelayed(this, 1000);
+
+                        if (isEndGame()){
+                            time = 00;
+                            cdTextView.setText(time+"");
+                        }
+                    }
+                }, 1000); // 1 second delay (takes millis)
             }
         }.start();
     }
@@ -250,11 +308,13 @@ public class SecondActivity extends AppCompatActivity {
 
         for (int i = 0; i < cards.length; i++) {
             if (cards[i].getId() == v.getId()) {
-                cards[i].setText(iconList.get(i) +"");
+                cards[i].setBackgroundResource(iconList.get(i));
                 counter++;
 
                 if (counter == 3) {
                     cards[id[0]].setText(R.string.cards_default);
+                    cards[id[0]].setBackgroundResource(R.drawable.button_custom);
+                    cards[id[1]].setBackgroundResource(R.drawable.button_custom);
                     cards[id[1]].setText(R.string.cards_default);
                     counter = 1;
                 }
