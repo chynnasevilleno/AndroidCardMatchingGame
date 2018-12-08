@@ -1,13 +1,17 @@
 package com.example.cnssevilleno.activity2;
 
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,38 +22,34 @@ import java.util.concurrent.TimeUnit;
 public class SecondActivity extends AppCompatActivity {
 
     // Arrays
-    private static Button cards[] = new Button[16];
+    private Button cards[];
+    private int[] pictureList;
+    private String[] stringList;
+    private ArrayList<String> characterList = new ArrayList<>();
     private ArrayList<Integer> iconList = new ArrayList<>();
+    // Controls
+    private int cardValue;
+    private int millis;
     // Counters
     private int hits = 0;
     private int misses = 0;
     private int counter = 0;
-    public int millis = 0;
     // Trackers
     private int[] id = new int[2];
-    private int[] value = new int[2];
+    private int[] value_icon = new int[2];
+    private String[] value_character = new String[2];
     // TextViews
     private TextView hitTextView;
     private TextView missTextView;
     private TextView cdTextView;
     // Booleans
     private boolean endgame;
-    //Timer
-    Chronometer mChronometer;
-
-    // Initialize photos array (photos)
-    final int[] drawable = new int[] {
-            R.drawable.one,
-            R.drawable.two,
-            R.drawable.three,
-            R.drawable.four,
-            R.drawable.five,
-            R.drawable.six,
-            R.drawable.seven,
-            R.drawable.eight
-    };
-    private static String[] symbols;
-    private static String[] letters;
+    private boolean pictureCardValue = false;
+    // Songs
+    private MediaPlayer ohyeah;
+    private MediaPlayer badtitanic;
+    // Countdown Timer
+    private CountDownTimer mismatch_countdown;
 
 
     @Override
@@ -59,73 +59,88 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        //if user chose symbols
-        //populateSymbols();
-        //if user chose letters
-        //populateLetters();
+        // Get controls
+        SharedPreferences sharedPref =
+                PreferenceManager.getDefaultSharedPreferences(
+                        getApplicationContext());
+
+        millis = sharedPref.getInt("millis", 3000);
+        cardValue = sharedPref.getInt("cardValue", 3);
 
         // Initialize elements
-        initArrayList();
+        ohyeah = MediaPlayer.create(this, R.raw.ohyeah);
+        badtitanic = MediaPlayer.create(this, R.raw.badtitanic);
+        badtitanic.setLooping(true);
+
+        Resources res = getResources();
+        switch(cardValue) {
+            case 0: // Letters
+                stringList =  res.getStringArray(R.array.cv_letters);
+                break;
+            case 1: // Numbers
+                stringList =  res.getStringArray(R.array.cv_numbers);
+                break;
+            case 2: // Symbols
+                stringList =  res.getStringArray(R.array.cv_symbols);
+                break;
+            case 3: // Pictures
+                pictureCardValue = true;
+                pictureList = new int[] {
+                        R.drawable.one,
+                        R.drawable.two,
+                        R.drawable.three,
+                        R.drawable.four,
+                        R.drawable.five,
+                        R.drawable.six,
+                        R.drawable.seven,
+                        R.drawable.eight
+                };
+                break;
+        }
+
+        if (pictureCardValue)
+            initIconList(pictureList);
+        else
+            initStringList(stringList);
+
         initCards();
         initTextViews();
 
         // Begin countdown of 3 seconds
         countdown();
     }
-    public void populateSymbols(){
-        symbols = new String[]{"ω", "ψ", "π", "θ", "ξ", "ζ", "δ", "β"};
-    }
-    public void populateLetters(){
-        letters = new String[]{"A","B","C","D","E","F","G","H"};
-    }
-    public void initArrayList(){
-        /* INITIALIZE ARRAYLIST with 16 shuffled numbers
 
-            iconList is an arraylist that contains the values for the
-            16 cards. The number of cards divided by 2 (16/2 = 8) will
-            be the number of pairs (8). Numbers 1 - 8 exist twice in
-            this arraylist, totaling 16 elements.
+    /* INITIALIZE ICON/STRING LIST with 16 shuffled numbers/symbols/
+       letters/drawables (pictures)
 
-            The list is shuffled to have the placement of cards
-            randomized each game .
-         */
+       iconList is an arraylist that contains the values for the
+       16 cards. The number of cards divided by 2 (16/2 = 8) will
+       be the number of pairs (8). Numbers 1 - 8 exist twice in
+       this arraylist, totaling 16 elements.
 
-        for (int y = 0; y < (cards.length/2); y++) {
-            //if user configures letters
-            //iconList.add
-            //if user configures numbers
-            //if user configures pictures (default)
-                iconList.add(drawable[y]);
-                iconList.add(drawable[y]);
-            //if user configures symbols
+       The list is shuffled to have the placement of cards
+       randomized each game .
+    */
 
+    private void initIconList(int valueList[]){
+        for (int y = 0; y < (valueList.length); y++) {
+            iconList.add(valueList[y]);
+            iconList.add(valueList[y]);
         }
         Collections.shuffle(iconList);
-
-        /*
-            CHEATS for debugging purposes
-
-            The code below prints out the answers to the puzzle in the
-            in the log console. It shows the placement of the values
-            behind he cards.
-         */
-
-        int character = 0;
-        String line = "";
-
-        for (int a = 0; a < iconList.size(); a++) {
-            line += iconList.get(a) + " ";
-            character++;
-            if (character == 4) {
-                line += "\n";
-                character = 0;
-            }
-        }
-        Log.d("Cheats", "\n" +line);
     }
 
 
-    public void initCards(){
+    private void initStringList(String valueList[]){
+        for (int y = 0; y < (valueList.length); y++) {
+            characterList.add(valueList[y]);
+            characterList.add(valueList[y]);
+        }
+        Collections.shuffle(characterList);
+    }
+
+
+    private void initCards(){
         /*  INITIALIZE CARDS with button references
 
             There are 16 cards laid out in a 4x4 grid.
@@ -133,34 +148,40 @@ public class SecondActivity extends AppCompatActivity {
 
             Get the card's referenced button using the button's ID and
             store them in their respective array indexes for later
-            manipulation. Display their respective values until
-            countdown to 0 from 3 is complete.
+            manipulation. Display their respective values and disable
+            the cards until the countdown to 0 from x is complete.
          */
 
-        cards[0] = (Button)findViewById(R.id.button1);
-        cards[1] = (Button)findViewById(R.id.button2);
-        cards[2] = (Button)findViewById(R.id.button3);
-        cards[3] = (Button)findViewById(R.id.button4);
-        cards[4] = (Button)findViewById(R.id.button5);
-        cards[5] = (Button)findViewById(R.id.button6);
-        cards[6] = (Button)findViewById(R.id.button7);
-        cards[7] = (Button)findViewById(R.id.button8);
-        cards[8] = (Button)findViewById(R.id.button9);
-        cards[9] = (Button)findViewById(R.id.button10);
-        cards[10] = (Button)findViewById(R.id.button11);
-        cards[11] = (Button)findViewById(R.id.button12);
-        cards[12] = (Button)findViewById(R.id.button13);
-        cards[13] = (Button)findViewById(R.id.button14);
-        cards[14] = (Button)findViewById(R.id.button15);
-        cards[15] = (Button)findViewById(R.id.button16);
+        cards = new Button[]{
+                (Button)findViewById(R.id.button1),
+                (Button)findViewById(R.id.button2),
+                (Button)findViewById(R.id.button3),
+                (Button)findViewById(R.id.button4),
+                (Button)findViewById(R.id.button5),
+                (Button)findViewById(R.id.button6),
+                (Button)findViewById(R.id.button7),
+                (Button)findViewById(R.id.button8),
+                (Button)findViewById(R.id.button9),
+                (Button)findViewById(R.id.button10),
+                (Button)findViewById(R.id.button11),
+                (Button)findViewById(R.id.button12),
+                (Button)findViewById(R.id.button13),
+                (Button)findViewById(R.id.button14),
+                (Button)findViewById(R.id.button15),
+                (Button)findViewById(R.id.button16)
+        };
 
         for(int x = 0; x < cards.length; x++){
-            cards[x].setBackgroundResource(iconList.get(x));
+            if (pictureCardValue)
+                cards[x].setBackgroundResource(iconList.get(x));
+            else
+                cards[x].setText(characterList.get(x));
+            cards[x].setEnabled(false);
         }
     }
 
 
-    public void initTextViews(){
+    private void initTextViews(){
         /*  INITIALIZE TEXTVIEWS with TextView references
 
             There are 3 TextViews, one for displaying the # of hits
@@ -181,15 +202,17 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
-    public void countdown(){
+    private void countdown(){
         /*
-            COUNTDOWN 3 seconds
+            COUNTDOWN x seconds
+            Revert the values of the cards back to their defualt value
+            after x seconds. x is user defined via the controls.
 
-            Revert the values of the cards back to the default, ???,
-            after 3 seconds.
+            TIMER
+            After countdown to x seconds is finished, start timer. Once
+            user completes puzzle, stop timer, and play music.
 
          */
-        millis = 3000; //set using radio button
 
         new CountDownTimer(millis, 1000){
             public void onTick(long millisUntilFinished){
@@ -197,12 +220,20 @@ public class SecondActivity extends AppCompatActivity {
                         millisUntilFinished);
                 cdTextView.setText(millisUntilFinished + "");
             }
+
+
             public void onFinish(){
+                // Enable buttons and reset to default values
                 for(int x = 0; x < cards.length; x++){
-                    cards[x].setText(R.string.cards_default);
-                    cards[x].setBackgroundResource(R.drawable.button_custom);
+                    if (pictureCardValue)
+                        cards[x].setBackgroundResource(R.drawable.button_custom);
+                    else
+                        cards[x].setText(R.string.cards_default);
+                    cards[x].setEnabled(true);
+                    badtitanic.start();
                 }
-                //start timer
+
+                // Start Timer
                 final Handler h = new Handler();
                 h.postDelayed(new Runnable()
                 {
@@ -216,12 +247,18 @@ public class SecondActivity extends AppCompatActivity {
                         int minutes = seconds / 60;
                         seconds = seconds % 60;
 
-                        cdTextView.setText(String.format("%d:%02d", minutes, seconds));
+                        cdTextView.setText(String.format(
+                                "%d:%02d", minutes, seconds));
                         h.postDelayed(this, 1000);
 
                         if (isEndGame()){
-                            time = 00;
-                            cdTextView.setText(time+"");
+                            h.removeCallbacks(this);
+                            Toast.makeText(getApplicationContext(),
+                                    "Hey b0ss, you finished!",
+                                    Toast.LENGTH_SHORT).show();
+
+                            badtitanic.stop();
+                            ohyeah.start();
                         }
                     }
                 }, 1000); // 1 second delay (takes millis)
@@ -230,7 +267,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
-    public boolean sameValues() {
+    private boolean sameValues() {
         /*  SAME VALUES?
 
             Checks if pair of cards have matching values. If they do,
@@ -240,20 +277,43 @@ public class SecondActivity extends AppCompatActivity {
             value[0] and value [1] are defined in onCardClick()
          */
 
-        if (value[0] == value[1]) {
-            hits++;
-            hitTextView.setText(hits +"");
-            return true;
+        if (pictureCardValue) {
+            if (value_icon[0] == value_icon[1]) {
+                hits();
+                return true;
+            }
+            else{
+                misses();
+                return false;
+            }
         }
         else{
-            misses++;
-            missTextView.setText(misses +"");
-            return false;
+            if (value_character[0] == value_character[1]) {
+                hits();
+                return true;
+            }
+            else{
+                misses();
+                return false;
+            }
         }
     }
 
 
-    public boolean isEndGame(){
+    public void hits(){
+        hits++;
+        hitTextView.setText(hits + "");
+
+    }
+
+
+    public void misses(){
+        misses++;
+        missTextView.setText(misses + "");
+    }
+
+
+    private boolean isEndGame(){
         /* IS ENDGAME?
 
             Checks if all the matching pairs have been found. If yes,
@@ -269,6 +329,41 @@ public class SecondActivity extends AppCompatActivity {
             else return false;
         }
         return true;
+    }
+
+
+    private void revert_pair(int first_card, int second_card){
+        // Reverts a pair of user chosen cards back to their defaults
+
+        cards[first_card].setBackgroundResource(R.drawable.button_custom);
+        cards[second_card].setBackgroundResource(R.drawable.button_custom);
+
+        if (! pictureCardValue){
+            cards[first_card].setText(R.string.cards_default);
+            cards[second_card].setText(R.string.cards_default);
+        }
+    }
+
+
+    private void enable_pair(int first_card, int second_card){
+        // Enables a pair of user chosen cards
+
+        cards[first_card].setEnabled(true);
+        cards[second_card].setEnabled(true);
+    }
+
+
+    private void disable_pair(int first_card, int second_card){
+        // Disables a pair of user chosen cards
+
+        if (!pictureCardValue){
+            cards[first_card].setBackgroundColor(Color.GREEN);
+            cards[second_card].setBackgroundColor(Color.GREEN);
+        }
+
+
+        cards[first_card].setEnabled(false);
+        cards[second_card].setEnabled(false);
     }
 
 
@@ -308,36 +403,66 @@ public class SecondActivity extends AppCompatActivity {
 
         for (int i = 0; i < cards.length; i++) {
             if (cards[i].getId() == v.getId()) {
-                cards[i].setBackgroundResource(iconList.get(i));
+                if (pictureCardValue)
+                    cards[i].setBackgroundResource(iconList.get(i));
+                else
+                    cards[i].setText(characterList.get(i));
+
+                if (cards[i].isEnabled()){
+                    cards[i].setEnabled(false);
+                }
                 counter++;
 
                 if (counter == 3) {
-                    cards[id[0]].setText(R.string.cards_default);
-                    cards[id[0]].setBackgroundResource(R.drawable.button_custom);
-                    cards[id[1]].setBackgroundResource(R.drawable.button_custom);
-                    cards[id[1]].setText(R.string.cards_default);
+                    mismatch_countdown.cancel();
+                    revert_pair(id[0], id[1]);
                     counter = 1;
                 }
                 if (counter == 1) {
                     id[0] = i;
-                    value[0] = iconList.get(i);
+                    if (pictureCardValue)
+                        value_icon[0] = iconList.get(i);
+                    else
+                        value_character[0] = characterList.get(i);
                 }
                 if (counter == 2) {
                     id[1] = i;
-                    value[1] = iconList.get(i);
+                    if (pictureCardValue)
+                        value_icon[1] = iconList.get(i);
+                    else
+                        value_character[1] = characterList.get(i);
 
                     if (sameValues()) {
-                        cards[id[0]].setEnabled(false);
-                        cards[id[1]].setEnabled(false);
+                        disable_pair(id[0], id[1]);
                         counter = 0;
                     }
+                    else {
+                        enable_pair(id[0], id[1]);
+                        mismatch_countdown = new CountDownTimer(2000, 1000) {
+                            public void onTick(long millisUntilFinished) {
+                                if (!pictureCardValue){
+                                    cards[id[0]].setBackgroundColor(Color.RED);
+                                    cards[id[1]].setBackgroundColor(Color.RED);
+                                }
+                            }
+
+                            public void onFinish() {
+                                revert_pair(id[0], id[1]);
+                                counter = 0;
+                            }
+                        }.start();
+                    }
                 }
-                // Log.d("counter", counter +""); For debugging purposes
+                Log.d("counter", counter +""); // For debugging purposes
             }
         }
-        if (isEndGame() == true){
-            Toast.makeText(this, "FINISHED!\nHITS: " +hits +"   " +
-                    "MISSES: " +misses, Toast.LENGTH_SHORT).show();
-        }
+    }
+
+
+    @Override
+    protected void onPause() {
+        ohyeah.stop();
+        badtitanic.pause();
+        super.onPause();
     }
 }
