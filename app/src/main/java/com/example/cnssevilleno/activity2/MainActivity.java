@@ -7,24 +7,28 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
+
     public void launchSecondActivity(View view) {
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
 
-    public void exitApplication(View view) {
-        finish();
-        System.exit(0);
-    }
 
     public void launchControlsActivity(View view) {
         Intent intent = new Intent(this, ControlsActivity.class);
         startActivity(intent);
+    }
+
+
+    public void exitApplication(View view) {
+        finish();
+        System.exit(0);
     }
 }

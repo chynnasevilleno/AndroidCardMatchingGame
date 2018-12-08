@@ -1,17 +1,57 @@
 <resources>
+    <!--MEME MACHINE-->
     <string name="app_name">The Meme Machine</string>
+
+    <!--ACTIVITIES-->
     <string name="activity2_name">Match the Memes</string>
     <string name="activity3_name">Controls</string>
+
+    <!--MAIN ACTIVITY-->
     <string name="menu1">GAME START</string>
     <string name="menu2">CONTROLS</string>
     <string name="menu3">HIGH SCORE</string>
     <string name="menu4">QUIT</string>
+
+    <!--SECOND ACTIVITY-->
     <string name="cards_default">\???</string>
     <string name="correct_textview">Correct</string>
     <string name="incorrect_textview">Incorrect</string>
     <string name="default_zero">00</string>
+
+    <!--CONTROL ACTIVITY-->
     <string name="letters">Letters (A, B, C, D, E, F, G, H)</string>
     <string name="numbers">Numbers (1, 2, 3, 4, 5, 6, 7, 8)</string>
     <string name="symbols">Symbols (ω, ψ, π, θ, ξ, ζ, δ, β)</string>
 
+    <!--CARD VALUES-->
+    <string-array name="cv_letters">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+    </string-array>
+    <string-array name="cv_numbers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="cv_symbols">
+        <item>ω</item>
+        <item>ψ</item>
+        <item>π</item>
+        <item>θ</item>
+        <item>ξ</item>
+        <item>ζ</item>
+        <item>δ</item>
+        <item>β</item>
+    </string-array>
 </resources>
