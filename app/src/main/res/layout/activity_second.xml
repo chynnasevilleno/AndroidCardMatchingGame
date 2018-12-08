@@ -20,24 +20,32 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="31dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Correct"
+                android:layout_marginEnd="8dp"
+                android:text="@string/correct_textview"
                 android:textColor="@color/colorPressed"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editText12"
-                android:layout_width="108dp"
-                android:layout_height="44dp"
+            <TextView
+                android:id="@+id/hitTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:inputType="textPersonName"
-                android:text="00"
+                android:text="@string/default_zero"
                 android:textAlignment="center"
                 android:textColor="@color/colorText"
                 android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         </android.support.constraint.ConstraintLayout>
@@ -47,16 +55,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <EditText
-                android:id="@+id/editText10"
-                android:layout_width="129dp"
-                android:layout_height="46dp"
+            <TextView
+                android:id="@+id/cdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:inputType="textPersonName"
-                android:text="00"
+                android:text="@string/default_zero"
                 android:textAlignment="center"
                 android:textColor="@color/colorText"
                 android:textSize="24sp"
@@ -79,24 +87,26 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Incorrect"
+                android:text="@string/incorrect_textview"
                 android:textColor="@color/colorPressed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.514"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editText11"
-                android:layout_width="103dp"
-                android:layout_height="43dp"
+            <TextView
+                android:id="@+id/missTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:inputType="textPersonName"
-                android:text="uwu"
+                android:text="@string/default_zero"
                 android:textAlignment="center"
                 android:textColor="@color/colorText"
                 android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.476"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +124,109 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="100"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_weight="100"
             android:orientation="horizontal">
 
@@ -122,85 +234,50 @@
                 android:id="@+id/button9"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/button10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/button11"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/button12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="100"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button102"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-
-            <Button
-                android:id="@+id/button101"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-
-            <Button
-                android:id="@+id/button100"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-
-            <Button
-                android:id="@+id/button103"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="100"
             android:orientation="horizontal">
 
@@ -208,79 +285,44 @@
                 android:id="@+id/button13"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/button14"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/button15"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/button16"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="100"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button17"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-
-            <Button
-                android:id="@+id/button18"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-
-            <Button
-                android:id="@+id/button19"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
-                android:textColor="@color/colorAccent" />
-
-            <Button
-                android:id="@+id/button20"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:background="@drawable/button_design"
-                android:text="\???"
+                android:background="@drawable/button_custom"
+                android:onClick="onCardClick"
+                android:text="@string/cards_default"
                 android:textColor="@color/colorAccent" />
         </LinearLayout>
 

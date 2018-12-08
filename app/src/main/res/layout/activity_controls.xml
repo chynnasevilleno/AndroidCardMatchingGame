@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    tools:context=".ControlsActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/colorBtn"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Letters / Numbers / \nSymbols / Pictures"
+            android:textColor="@color/colorPressed"
+            android:textSize="24sp" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_letters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/letters"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText" />
+
+            <RadioButton
+                android:id="@+id/radio_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/numbers"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText" />
+
+            <RadioButton
+                android:id="@+id/radio_symbols"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/symbols"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText"/>
+
+            <RadioButton
+                android:id="@+id/radio_pics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="Pictures (memes)"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText"
+                android:checked="true"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Countdown Timer"
+            android:textColor="@color/colorPressed"
+            android:textSize="24sp" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/count2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClickedTimer"
+                android:text="2 seconds"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/count3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClickedTimer"
+                android:text="3 seconds"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText" />
+
+            <RadioButton
+                android:id="@+id/count4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClickedTimer"
+                android:text="4 seconds"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText"/>
+
+            <RadioButton
+                android:id="@+id/count5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClickedTimer"
+                android:text="5 seconds"
+                android:textColor="@color/colorText"
+                android:buttonTint="@color/colorText"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/colorAccent"
+            android:text="Save Configurations"
+            android:textColor="@color/colorText"
+            android:onClick="saveConfigurations"/>
+
+    </LinearLayout>
+</LinearLayout>
