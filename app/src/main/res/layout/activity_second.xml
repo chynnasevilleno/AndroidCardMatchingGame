@@ -136,7 +136,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button2"
@@ -146,7 +147,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button3"
@@ -156,7 +158,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button4"
@@ -166,7 +169,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -183,7 +187,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button6"
@@ -193,7 +198,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button7"
@@ -203,7 +209,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button8"
@@ -213,7 +220,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -230,7 +238,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button10"
@@ -240,7 +249,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button11"
@@ -250,7 +260,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button12"
@@ -260,7 +271,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -277,7 +289,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button14"
@@ -287,7 +300,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button15"
@@ -297,7 +311,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button16"
@@ -307,7 +322,8 @@
                 android:layout_weight="100"
                 android:background="@drawable/button_custom"
                 android:onClick="onCardClick"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>
